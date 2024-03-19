@@ -32,7 +32,7 @@ export default function Home() {
 				},
 			};
 			const { data } = await axios.request(config);
-			setShortLink(`https://short.ly/${data.slug}`);
+			setShortLink(`${process.env.NEXT_PUBLIC_HOST_URL}/${data.slug}`);
 		} catch (error) {
 			setError("Internal Server Error");
 		}
@@ -66,7 +66,7 @@ export default function Home() {
 			<div id="short-link" className="">
 				{shortLink && (
 					<p className="text-black text-2xl">
-						Your Shortened URL is: {shortLink}
+						Your Shortened URL is: <a href={shortLink} target="_blank">{shortLink}</a>
 					</p>
 				)}
 			</div>
