@@ -48,7 +48,7 @@ export default function Home() {
     }, [error, shortLink]);
 
     return (
-        <div className="space-y-4 absolute mx-2 sm:mx-0">
+        <div className="space-y-4 mx-2 sm:mx-2 p-2">
             <h1 className="md:text-9xl text-8xl font-extralight animate-pulse">
                 Short.Ly
             </h1>
@@ -71,19 +71,19 @@ export default function Home() {
             <div id="error" className="">
                 <p className="relative text-red-500">‎ {error}</p>
             </div>
-            <div id="short-link" className="text-wrap overscroll-y-contain">
+            <div id="short-link" className="">
                 {loading ? (
                     <p className="text-black text-2xl">Loading...</p>
                 ) : (
                     shortLink && (
-                        <p className="text-black text-2xl text-center bg-slate-300 rounded-md py-2 flex gap-2 justify-around">
-								<a href={shortLink} target="_blank">{shortLink}</a>
+                        <div className="space-x-2 text-xl">
+								<a href={shortLink} target="_blank" className="bg-slate-300 p-2 rounded-md">{shortLink}</a>
 								<button onClick={() => {
 									navigator.clipboard.writeText(shortLink);
 									setCopied(true);
 									setTimeout(() => setCopied(false), 10000);
 								}} className="text-xl bg-black text-white p-1 rounded-md hover:bg-slate-800" >{copied?"Copied":"Copy"}</button>
-                        </p>
+                        </div>
                     )
                 )}
             </div>
