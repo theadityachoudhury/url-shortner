@@ -48,7 +48,7 @@ export default function Home() {
     }, [error, shortLink]);
 
     return (
-        <div className="space-y-4 absolute">
+        <div className="space-y-4 absolute mx-2 sm:mx-0">
             <h1 className="md:text-9xl text-8xl font-extralight animate-pulse">
                 Short.Ly
             </h1>
