@@ -23,28 +23,24 @@ export default function Home() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true); // Start loading
-        setShortLink("https://shortly.adityachoudhury.com/8gw28h");
-        //sleep for 2 seconds
-
-        setLoading(false); // Stop loading
-        // try {
-        //     let config = {
-        //         method: "post",
-        //         url: "/api/shorten",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         data: {
-        //             url: link,
-        //         },
-        //     };
-        //     const { data } = await axios.request(config);
-        //     setShortLink(`${process.env.NEXT_PUBLIC_HOST_URL}/${data.slug}`);
-        // } catch (error) {
-        //     setError("Internal Server Error");
-        // } finally {
-        //     setLoading(false); // Stop loading
-        // }
+        try {
+            let config = {
+                method: "post",
+                url: "/api/shorten",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                data: {
+                    url: link,
+                },
+            };
+            const { data } = await axios.request(config);
+            setShortLink(`${process.env.NEXT_PUBLIC_HOST_URL}/${data.slug}`);
+        } catch (error) {
+            setError("Internal Server Error");
+        } finally {
+            setLoading(false); // Stop loading
+        }
     };
 
     useEffect(() => {
